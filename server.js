@@ -4,7 +4,7 @@ const ejs=require('ejs')
 const expressLayouts=require('express-ejs-layouts')
 const path=require('path')
 const PORT=process.env.PORT || 3000
-
+app.use(express.static('public'))
 //set template engine
 app.get('/',(req,res)=>{
     res.render('home') 
