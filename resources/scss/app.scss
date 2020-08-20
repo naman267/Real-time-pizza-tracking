@@ -31,6 +31,43 @@ section.hero{
      border-color:$pure;
      color:$pure;
  }
+}
+.done{
+    border:2px solid $primary;
+    color:$pure;
+    background:$primary;
+    transition:$smooth;
+ &:hover{
+     background:$primary;
+     border-color:$pure;
+     color:$pure;
+ }
 
+}
+.btn-primary{
+    background:$primary;
+    transition:$smooth;
+    &:hover{
+        background:$primary-hover;
+      
+    }
+}
+section.cart{
+    background:$secondary;
+    .amount{
+        color:$primary;
+    }
+}
+section.login{
+    background:$secondary;
+    min-height: 100vh;
+    a{
+        color:$primary;
+        transition:$smooth;
+        &:hover{
+            color:$primary-hover;
+        }
+
+    }
 
 }
