@@ -33,8 +33,8 @@ let mongoStore=new Mongodbstore({
     mongooseConnection:connection,
     collection:'sessions'
 })
-//const eventEmitter=new Emitter()
-//app.set('eventEmitter',eventEmitter)
+const eventEmitter=new Emitter()
+app.set('eventEmitter',eventEmitter)
 //session
 app.use(flash())
 app.use(session({
@@ -73,7 +73,7 @@ require('./routes/web')(app)
 const server=app.listen(PORT,()=>{
     console.log('Listening on port',PORT)
 })
-/*const io=require('socket.io')(server)
+const io=require('socket.io')(server)
 //socket
 
 io.on('connection',socket=>{
@@ -86,6 +86,6 @@ io.on('connection',socket=>{
 eventEmitter.on('orderUpdated',(data)=>{
     io.to(`order_${data.id}`).emit('orderUpdated',data)
 })
-/*eventEmitter.on('orderPlaced',(data)=>{
+eventEmitter.on('orderPlaced',(data)=>{
     io.to('adminRoom').emit('orderPlaced',data)
-})*/
+})

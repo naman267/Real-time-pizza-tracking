@@ -2,9 +2,9 @@
 import axios from 'axios'
 import moment from 'moment'
 import Noty from 'noty'
-import { Socket } from 'socket.io';
+//import { Socket } from 'socket.io';
 
-export function initAdmin()
+export function initAdmin(socket)
 {
     let orderTableBody=document.getElementById('orderTableBody')
 let orders=[];
@@ -88,7 +88,7 @@ function generateMarkup(orders) {
     }).join('')
 }
 
-/*socket.on('orderPlaced',(order)=>{
+socket.on('orderPlaced',(order)=>{
     new Noty({
         type:"success",
         timeout:1000,
@@ -97,5 +97,5 @@ function generateMarkup(orders) {
     orders.unshift(order)
     orderTableBody.innerHTML = '';
     orderTableBody.innerHTML = generateMarkup(orders)
-})*/
+})
 }

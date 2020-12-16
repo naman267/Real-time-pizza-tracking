@@ -22,8 +22,8 @@ function orderController()
             order.save().then((result)=>{
                 req.flash('success','Order Placed Succesfully')
                 delete req.session.cart
-              // const eventEmitter=req.app.get('eventEmitter')
-               //eventEmitter.emit('orderPlaced',result)
+               const eventEmitter=req.app.get('eventEmitter')
+               eventEmitter.emit('orderPlaced',result)
 
 
                 return res.redirect('/customer/orders');

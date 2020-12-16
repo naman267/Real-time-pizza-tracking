@@ -46,8 +46,8 @@ if(alertMsg)
 },2000)
     
 }
-
-initAdmin()
+let socket=io();
+initAdmin(socket)
 
 let time=document.createElement('small')
 let statuses=document.querySelectorAll('.status_line')
@@ -82,16 +82,18 @@ function updateStatus(order)
             }
         }
     })
-console.log(order)
+
 }
 updateStatus(order)
+let adminAreaPath=window.location.pathname
+console.log(adminAreaPath)
 
-let socket=io();
-//let adminAreaPath=window.location.pathname
-/*if(adminAreaPath.includes('admin'))
+
+
+if(adminAreaPath.includes('admin'))
 {
     socket.emit('join','adminRoom')
-}*/
+}
 if(order)
 {
 socket.emit('join',`order_${order._id}`);
