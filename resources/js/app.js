@@ -1,10 +1,13 @@
 import axios from 'axios'
 import Noty from 'noty'
-
+import {initAdmin} from'./admin'
+import moment from 'moment'
 const cartCounter=document.querySelector('#cartCounter')
-let counter=document.getElementsByClassName('coun')[0].id
-cartCounter.innerText=counter
+//let counter=document.getElementsByClassName('coun')[0].id
 
+//cartCounter.innerText=counter
+const user=document.getElementsByClassName('user')[0].id;
+console.log("user",user)
 function updateCart(pizza){
     axios.post('/update-cart',pizza).then((res)=>{
         cartCounter.innerText=res.data.totalQty
@@ -32,4 +35,78 @@ addToCart.forEach((btn)=>{
         //console.log(pizza)
         updateCart(pizza)
     })
+})
+
+
+let alertMsg=document.getElementById('success-alert')
+if(alertMsg)
+{ console.log("hi")
+    setTimeout(()=>{
+    alertMsg.remove()
+},2000)
+    
+}
+
+initAdmin()
+
+let time=document.createElement('small')
+let statuses=document.querySelectorAll('.status_line')
+let input =document.getElementById('hiddeninput');
+let order=input?input.value:null;
+order=JSON.parse(order)
+function updateStatus(order)
+{let stepCompleted=true;
+   
+    statuses.forEach((status)=>{
+        status.classList.remove('step-completed');
+        status.classList.remove('current')
+    })
+
+
+    statuses.forEach((status)=>{
+        
+        let dataprop=status.dataset.status;
+
+        if(stepCompleted)
+        {
+            status.classList.add('step-completed')
+        }
+        if(dataprop==order.status)
+        {   stepCompleted=false;
+            time.innerText=moment(order.updatedAt).format('hh:mm:A')
+            status.appendChild(time)
+            if(status.nextElementSibling)
+            {
+            status.nextElementSibling.classList.add('current');
+           
+            }
+        }
+    })
+console.log(order)
+}
+updateStatus(order)
+
+let socket=io();
+//let adminAreaPath=window.location.pathname
+/*if(adminAreaPath.includes('admin'))
+{
+    socket.emit('join','adminRoom')
+}*/
+if(order)
+{
+socket.emit('join',`order_${order._id}`);
+}
+socket.on('orderUpdated',(data)=>{
+    const updatedOrder={...order}
+    //New updated time 
+    updatedOrder.updatedAt=moment().format()
+    updatedOrder.status=data.status
+    console.log(data)
+    updateStatus(updatedOrder)
+    new Noty({
+        type:"success",
+        timeout:1000,
+        text:'Order Updated'
+    }).show()
+
 })

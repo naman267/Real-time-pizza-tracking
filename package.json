@@ -14,7 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^14.14.14",
     "axios": "^0.20.0",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
     "connect-mongo": "^3.2.0",
     "ejs": "^3.1.5",
     "env-cmd": "^10.1.0",
@@ -22,8 +25,12 @@
     "express-ejs-layouts": "^2.5.0",
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.29.1",
     "mongoose": "^5.10.0",
-    "noty": "^3.2.0-beta"
+    "noty": "^3.2.0-beta",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
@@ -33,5 +40,8 @@
     "sass": "^1.26.10",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "browser": {
+    "fs": false
   }
 }
