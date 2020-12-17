@@ -1,11 +1,11 @@
 const sgMail=require('@sendgrid/mail')
-
+console.log(process.env.SENDGRID_API_KEY)
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const sendStatusEmail=(email,name,orderId,status)=>{
     console.log("emaill status")
  sgMail.send({ 
   to:email,
-  from:'namanb139j@gmail.com',
+  from:'naman127j@gmail.com',
   subject:'Status Changed',
   text:` ${name} 
   Status of your order with OrderId-${orderId}
@@ -14,7 +14,7 @@ const sendStatusEmail=(email,name,orderId,status)=>{
 }).then((data)=>{
 console.log('Email sent')
 }).catch(e=>{
-  console.log(e)
+    console.error(e.toString());
 })
 }
 

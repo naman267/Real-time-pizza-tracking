@@ -17,7 +17,7 @@ const sendOrderEmail=(email,name,order)=>{
 
  sgMail.send({ 
   to:email,
-  from:'namanb139j@gmail.com',
+  from:'naman127j@gmail.com',
   subject:'Thanks for Ordering ',
   text:` Thanks ${name}  for ordering 
   Your order Id-
