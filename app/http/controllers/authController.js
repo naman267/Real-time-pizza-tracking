@@ -2,6 +2,7 @@ constUser=require('../../models/user')
 const bcrypt=require('bcrypt')
 const passport = require('passport')
 const User = require('../../models/user')
+const signupMail=require('../../email/signup')
 
 function authController(){
     function _getRedirectedlogin(req)
@@ -39,7 +40,8 @@ function authController(){
             password:hashed
         })
         user.save().then((result)=>{
-            res.redirect('/')
+            signupMail(Email,Name);
+            res.redirect('/login')
         }).catch((e)=>{
             req.flash('error','Somethong went wrong')
             return res.redirect('/register')

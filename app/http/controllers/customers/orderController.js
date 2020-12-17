@@ -1,5 +1,6 @@
 const Order=require('../../../models/order')
 const moment=require('moment')
+const orderMail=require('../../../email/order')
 function orderController()
 {
     return {
@@ -23,6 +24,7 @@ function orderController()
                 Order.populate(result,{path:'customerId'},(err,placedOrder)=>{
                     req.flash('success','Order Placed Succesfully')
                     delete req.session.cart
+                    orderMail(req.user.email,req.user.name,result);
                    const eventEmitter=req.app.get('eventEmitter')
                    eventEmitter.emit('orderPlaced',result)
                     return res.redirect('/customer/orders');
