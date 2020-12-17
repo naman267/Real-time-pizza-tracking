@@ -4,7 +4,7 @@ function cartController(){
     return{
         index(req,res){
             console.log(req.session)
-            res.render('customers/cart',{session:req.session,counter:req.session.cart.totalQty})
+            res.render('customers/cart')
            },
         update(req,res){
            

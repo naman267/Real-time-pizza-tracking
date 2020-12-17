@@ -3,9 +3,13 @@ import Noty from 'noty'
 import {initAdmin} from'./admin'
 import moment from 'moment'
 const cartCounter=document.querySelector('#cartCounter')
-//let counter=document.getElementsByClassName('coun')[0].id
+let adminAreaPath=window.location.pathname
 
-//cartCounter.innerText=counter
+
+
+let counter=document.getElementsByClassName('coun')[0].id
+
+cartCounter.innerText=counter
 const user=document.getElementsByClassName('user')[0].id;
 console.log("user",user)
 function updateCart(pizza){
@@ -37,6 +41,10 @@ addToCart.forEach((btn)=>{
     })
 })
 
+if(adminAreaPath.includes('admin'))
+{cartCounter.innerText=counter=0;
+
+}
 
 let alertMsg=document.getElementById('success-alert')
 if(alertMsg)
@@ -47,7 +55,7 @@ if(alertMsg)
     
 }
 let socket=io();
-initAdmin(socket)
+
 
 let time=document.createElement('small')
 let statuses=document.querySelectorAll('.status_line')
@@ -85,13 +93,11 @@ function updateStatus(order)
 
 }
 updateStatus(order)
-let adminAreaPath=window.location.pathname
-console.log(adminAreaPath)
 
 
 
 if(adminAreaPath.includes('admin'))
-{
+{initAdmin(socket)
     socket.emit('join','adminRoom')
 }
 if(order)

@@ -1,7 +1,7 @@
-<section id="<%= counter %>" class="coun cart py-16">
+<section  class="cart py-16">
     <% if(session.cart){ %>
 
-<div class="order container mx-auto w-1/2">
+<div id="<%= session.cart.totalQty %>" class="coun order container mx-auto xl:w-1/2">
     <div class="container flex items-center pb-4 border-b border-gray-300">
         <img src="/img/cart-black.png">
         <h1 class="text-2xl font-bold ml-4 ">Order Summary</h1>

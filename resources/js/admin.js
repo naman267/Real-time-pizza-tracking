@@ -40,7 +40,7 @@ function generateMarkup(orders) {
     return orders.map(order => {
         return `
             <tr>
-            <td class="border px-4 py-2 text-green-900">
+            <td style="color:green" class="border px-4 py-2 text-green-900">
                 <p>${ order._id }</p>
                 <div>${ renderItems(order.items) }</div>
             </td>
