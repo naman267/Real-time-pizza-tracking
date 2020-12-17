@@ -1,5 +1,9 @@
+<% if(session.cart){ %>
 <section id="<%= session.cart.totalQty %>"class="coun status">
-<div class="container mx-auto">
+<% }else{ %>
+    <section id="0"class="coun status"></section>
+    <% } %>
+    <div class="container mx-auto">
     <div class="status-box  w-2/3 mx-auto">
     <div class="flex items-center justify-between pb-16">
         <h1 class="text-xl font-bold ">Track Deleiver Status</h1>

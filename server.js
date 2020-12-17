@@ -18,7 +18,8 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 //database connection
-const url="mongodb://127.0.0.1:27017/pizza";
+//const url="mongodb://127.0.0.1:27017/pizza";
+const url="mongodb+srv://pizza:pizza@cluster0.jg2br.mongodb.net/pizza?retryWrites=true&w=majority"
 mongoose.connect(url,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology:true,useFindAndModify:false})
 const connection=mongoose.connection
 
