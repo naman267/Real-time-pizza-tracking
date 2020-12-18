@@ -1,5 +1,5 @@
 const sgMail=require('@sendgrid/mail')
-console.log(process.env.SENDGRID_API_KEY)
+
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const sendStatusEmail=(email,name,orderId,status)=>{
     console.log("emaill status")
