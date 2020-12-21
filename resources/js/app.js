@@ -2,10 +2,9 @@ import axios from 'axios'
 import Noty from 'noty'
 import {initAdmin} from'./admin'
 import moment from 'moment'
+import {initStripe} from './stripe'
 const cartCounter=document.querySelector('#cartCounter')
 let adminAreaPath=window.location.pathname
-
-
 
 let counter=document.getElementsByClassName('coun')[0].id
 
@@ -93,6 +92,10 @@ function updateStatus(order)
 
 }
 updateStatus(order)
+
+//
+initStripe()
+
 
 
 
